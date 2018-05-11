@@ -6,10 +6,26 @@ using System.Threading.Tasks;
 
 namespace Custom_List
 {
-    class Program
+    public class CustList<T>
     {
         static void Main(string[] args)
-        {
-        }
+        { }
+
+        private T[] arr;
+        private int count;
+
+        public CustList()
+        { }
+        public void Add(T item)
+        { }
+
+        public void Remove()
+        { }
+
+        public float Count;
+         {get int count; }
+     
+        {set value = int count; }
+
     }
 }
