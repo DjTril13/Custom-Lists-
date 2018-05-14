@@ -60,7 +60,7 @@ namespace Test_Custom_List
         /// //////////////////Removing Index 
 
         [TestMethod]
-        public void Remove_CountCantGoBelowZero_InputEqualsActual()
+        public void Remove_CountDecreasesByOne_InputEqualsActual()
         {
             //arrange
             CustList<int> TestList = new CustList<int>();   // Testing to that the index count after is what one less than original, maybe this could also test that capacity remained the same
@@ -69,30 +69,47 @@ namespace Test_Custom_List
             TestList.Add(2);
             TestList.Add(3);
             //act
-            TestList.Remove(1);             // this should not be able to happen after index 0
-            int endCount = 0;
-            int actualEndCount = TestList.Count;
+            TestList.Remove(1);             
+            int endCount = 3;                             
+            int actualEndCount = TestList.Count;      //index count should be 3, capacity still 4
             //assert
             Assert.AreEqual(endCount, actualEndCount);
         }
 
-        public void Remove_TakesIndexAway_InputEqualsActual()
+        public void Remove_TakesCorrectIndexAway_InputEqualsActual()
         {
             //arrange
-            CustList<int> TestList = new CustList<int>();  // Testing that the returned remove is the one you wanted to remove
-            TestList.Add(3);
-            TestList.Add(4);
+            CustList<string> TestList = new CustList<string>();  // Testing that the indexs are shifted to the left in the array (decreased an index)
+            TestList.Add("a");
+            TestList.Add("b");
+            TestList.Add("c");
+            TestList.Add("d");
             //act
-            TestList.Remove();
-            int expectedValue = TestList[1];
+            TestList.Remove("b");           // new array shoudl be [a, c, d, ,]
+
+            string expectedString = TestList[1];
             //assert
-            Assert.AreEqual(expectedValue, 3);
+            Assert.AreEqual(expectedString, "c");
+            string expectedString2 = TestList[2];
+            Assert.AreEqual(expectedString, "d");
+            string expectedString3 = TestList[2];
+            Assert.AreEqual(expectedString, " ");     // This test is the capacity remain 4 as well 
         }
 
+        //      TESTS FOR ITERATION   -- By creating/testing your COUNT propetrty
 
 
 
+        // TEST TO OVERLOAD THE + OPERATOR
+        // TEST TO OVERLOAD THE - OPERATOR
+
+        // TEST TO>STRING
+
+        // TEST FOR ZIPPER 
+
+        // BONUS !! TEST ABILITY TO SORT
+        // BONUS !! EASTER EGG USER STORY 
 
     }
-    }
+}
 
