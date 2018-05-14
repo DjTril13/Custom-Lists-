@@ -11,7 +11,7 @@ namespace Test_Custom_List
     {
 
         [TestMethod]
-        public void Add_AddItemToListCountIsOne_InputEqualsActual()
+        public void Add_AddItemToListCountIsOne_InputEqualsActual()   //
         {
             //arrange
             CustList<int> TestList = new CustList<int>();
@@ -19,7 +19,7 @@ namespace Test_Custom_List
 
             //act
             TestList.Add(inputValue);
-            int actualCount = TestList.count;
+            int actualCount = TestList.Count;
             //assert
             Assert.AreEqual(1, actualCount);
         }
@@ -33,7 +33,7 @@ namespace Test_Custom_List
 
             //act
             TestList.Add(inputValue);
-            int actualValue = TestList.arr[0];
+            int actualValue = TestList[0];
             //assert
             Assert.AreEqual(5, actualValue);
         }
@@ -43,47 +43,55 @@ namespace Test_Custom_List
         {
             //arrange
             CustList<int> TestList = new CustList<int>();
-            int  = 5;
-            int originalCount = TestList.count;
+            int originalCount = TestList.Count; // this is 4
+            TestList.Add(0);
+            TestList.Add(1);
+            TestList.Add(2);
+            TestList.Add(3);
             //act
-            TestList.Add(inputValue);
-            int actualCount = TestList.count;
-
+            TestList.Add(4);                    // this shouldnt be able to happen 
+            int newCount = TestList.Count;
             //assert
-            Assert.AreEqual(1, actualCount);
+            Assert.AreEqual(4, newCount);
         }
 
-        /// <summary>
+        //                   We need a test for .add that increased the capacity of the array if you try to .add more than it can currently accept
+
         /// //////////////////Removing Index 
-        /// </summary>
 
         [TestMethod]
         public void Remove_CountCantGoBelowZero_InputEqualsActual()
         {
             //arrange
-            CustList<int> TestList = new CustList<int>();   // TestList is an empty arrray 
-            int originalCount = 0;
+            CustList<int> TestList = new CustList<int>();   // Testing to that the index count after is what one less than original, maybe this could also test that capacity remained the same
+            TestList.Add(0);
+            TestList.Add(1);
+            TestList.Add(2);
+            TestList.Add(3);
             //act
-            TestList.Remove();                                // this should not be able to happen
+            TestList.Remove(1);             // this should not be able to happen after index 0
             int endCount = 0;
-            int actualEndCount;
-
+            int actualEndCount = TestList.Count;
             //assert
-            Assert.AreNotEqual(actualEndCount, endCount);
+            Assert.AreEqual(endCount, actualEndCount);
         }
 
         public void Remove_TakesIndexAway_InputEqualsActual()
         {
             //arrange
-            CustList<int> TestList = new CustList<int>();  // TestList is an empty arrray 
-            
+            CustList<int> TestList = new CustList<int>();  // Testing that the returned remove is the one you wanted to remove
+            TestList.Add(3);
+            TestList.Add(4);
             //act
-            TestList.Remove();                                // this should not be able to happen
-            expectedResult = TestList{2}
-
+            TestList.Remove();
+            int expectedValue = TestList[1];
             //assert
-            Assert.AreNotEqual(originalCount, actualCount);
+            Assert.AreEqual(expectedValue, 3);
         }
+
+
+
+
 
     }
     }
